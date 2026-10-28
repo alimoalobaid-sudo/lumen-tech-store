@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#081321">
+<title>LUMEN TECH | علي العبيد</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#081321;--panel:#102238;--silver:#d9e1eb;--muted:#9cacc0;--line:#29394d;--green:#25d366}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Cairo,sans-serif;background:var(--bg);color:#f5f7fb;line-height:1.8}
+body.lock{overflow:hidden}
+a{text-decoration:none;color:inherit}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.container{width:min(1120px,92%);margin:auto}
+section{padding:75px 0}
+h2{font-size:30px;margin-bottom:12px}
+.muted,p{color:var(--muted)}
+.btn{border:1px solid var(--line);border-radius:12px;padding:11px 18px;display:inline-flex;justify-content:center;align-items:center;font-weight:bold;cursor:pointer}
+.primary{background:var(--silver);color:#081321}
+.outline{color:white;background:transparent}
+.green{background:var(--green);color:#062012;border:0}
+#intro{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;text-align:center;background:radial-gradient(ellipse at center,#192f49,#081321 65%,#030811);transition:opacity .7s,visibility .7s}
+#intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+.intro-inner{animation:rise 1s ease both}
+.logo-mark{width:78px;height:78px;border:1px solid #d9e1eb;display:grid;place-items:center;margin:0 auto 25px;transform:rotate(45deg);box-shadow:0 0 40px #d9e1eb22}
+.logo-mark span{transform:rotate(-45deg);font:50px Georgia,serif;color:#d9e1eb}
+.intro-inner h1{font-size:clamp(30px,7vw,50px);letter-spacing:4px;direction:ltr}
+.intro-inner h1 span{color:#9cacc0}
+.intro-inner p{margin-top:8px}
+.progress{height:2px;width:220px;max-width:70vw;background:#29394d;margin:25px auto;overflow:hidden}
+.progress span{display:block;width:0;height:100%;background:white;animation:loadline 4.5s linear forwards}
+.intro-inner small{letter-spacing:4px;color:#c1ccda}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes loadline{to{width:100%}}
+header{position:sticky;top:0;z-index:1000;background:#081321ed;backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}
+nav{min-height:76px;display:flex;justify-content:space-between;align-items:center;gap:15px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .logo-mark{width:38px;height:38px;margin:0;box-shadow:none}
+.brand .logo-mark span{font-size:25px}
+.brand-name{font-weight:800;direction:ltr}
+.brand-name small{display:block;font-size:9px;letter-spacing:2px;color:var(--muted)}
+.links{display:flex;gap:20px;align-items:center}
+.links a{font-size:14px;color:#cbd5e1}
+.nav-actions{display:flex;gap:8px;align-items:center}
+.cart-btn,.menu-btn{background:var(--panel);color:white;border:1px solid var(--line);padding:9px 12px;border-radius:10px}
+#count{background:var(--silver);color:var(--bg);border-radius:20px;padding:0 7px}
+.menu-btn{display:none}
+.hero{padding:85px 0;background:radial-gradient(ellipse at 10% 20%,#7892b31c,transparent 45%),linear-gradient(#0b1a2b,#081321);border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:45px}
+.eyebrow{color:#aebed2;font-size:13px;letter-spacing:1px}
+.hero h2{font-size:clamp(35px,5vw,57px);line-height:1.4;margin:18px 0}
+.hero h2 span{color:var(--silver)}
+.hero-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.hero-points{display:flex;gap:18px;flex-wrap:wrap;margin-top:25px;font-size:13px;color:var(--muted)}
+.visual{min-height:330px;border:1px solid #d9e1eb28;border-radius:28px;display:grid;place-items:center;position:relative;background:radial-gradient(circle,#7892b31b,transparent 60%),linear-gradient(145deg,#152a42,#07111e)}
+.orbit{width:210px;height:210px;border:1px solid #d9e1eb55;border-radius:50%;display:grid;place-items:center;box-shadow:0 0 60px #b8c7d91c}
+.orbit:before{content:"";position:absolute;width:155px;height:155px;border:1px dashed #d9e1eb45;border-radius:50%}
+.orbit span{font:120px Georgia,serif;color:var(--silver)}
+.visual small{position:absolute;bottom:20px;letter-spacing:3px;color:var(--muted);direction:ltr}
+.heading{margin-bottom:30px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.card{background:linear-gradient(145deg,#12263d,#0b1a2b);border:1px solid var(--line);border-radius:18px;padding:24px}
+.card .symbol{font-size:27px;margin-bottom:10px;color:var(--silver)}
+.card h3{margin-bottom:8px}
+.card p{font-size:14px}
+.store{background:#091624;border-block:1px solid var(--line)}
+.toolbar{display:flex;gap:10px;margin-bottom:24px}
+.toolbar input,.toolbar select{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;color:white}
+.toolbar input{flex:1;min-width:0}
+.products .card{padding:0;overflow:hidden;display:flex;flex-direction:column}
+.product-img{height:160px;background:linear-gradient(145deg,#192e46,#0b1726);display:grid;place-items:center;font-size:55px;color:#b9c9dc;overflow:hidden}
+.product-img img{width:100%;height:100%;object-fit:cover}
+.product-info{padding:17px;display:flex;flex-direction:column;flex:1}
+.product-info h3{font-size:17px}
+.category{font-size:12px;color:#9fb1c8}
+.description{font-size:13px;flex:1;margin-top:5px}
+.price{font-size:21px;font-weight:800;direction:ltr;text-align:right;color:var(--silver);margin-top:12px}
+.syp{font-size:12px;color:var(--muted)}
+.product-info button{width:100%;margin-top:12px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.contact{display:flex;align-items:center;justify-content:space-between;gap:20px;background:linear-gradient(120deg,#142940,#0d1b2c);padding:30px;border:1px solid var(--line);border-radius:22px}
+footer{border-top:1px solid var(--line);padding:25px 0;font-size:13px}
+.footer-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.overlay{position:fixed;inset:0;z-index:3000;background:#000a;display:none}
+.overlay.open{display:block}
+.drawer{position:fixed;z-index:3001;inset:0 auto 0 0;width:min(420px,100%);background:#0b192a;border-right:1px solid var(--line);padding:22px;display:none;flex-direction:column}
+.drawer.open{display:flex}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.close{background:transparent;color:white;border:1px solid var(--line);border-radius:9px;padding:6px 10px}
+#cart-items{flex:1;overflow:auto}
+.cart-item{display:flex;justify-content:space-between;gap:10px;padding:14px 0;border-bottom:1px solid var(--line)}
+.cart-item small{display:block;color:var(--muted)}
+.qty{display:flex;gap:8px;align-items:center;margin-top:7px}
+.qty button{background:var(--panel);color:white;border:1px solid var(--line);border-radius:6px;padding:1px 8px}
+.remove{border:0;background:transparent;color:#ffaaaa}
+.total{border-top:1px solid var(--line);padding-top:16px}
+.total strong{font-size:22px;color:var(--silver)}
+.total button{width:100%;margin-top:12px}
+.modal{display:none;position:fixed;inset:0;z-index:4000;background:#000b;place-items:center;padding:15px}
+.modal.open{display:grid}
+.modal-box{width:min(500px,100%);max-height:90vh;overflow:auto;background:#0d1d30;border:1px solid var(--line);border-radius:18px;padding:22px}
+.field{margin:13px 0}
+.field label{display:block;font-size:13px;margin-bottom:5px}
+.field input,.field textarea{width:100%;padding:11px;border:1px solid var(--line);background:#081321;color:white;border-radius:9px}
+.field textarea{min-height:75px}
+#product-status{margin-top:14px;font-size:13px}
+@media(max-width:850px){
+.links{display:none;position:absolute;top:76px;right:0;left:0;background:#0b192a;padding:20px 5%;flex-direction:column;align-items:stretch;border-bottom:1px solid var(--line)}
+.links.show{display:flex}.menu-btn{display:block}.header-contact{display:none}
+.hero-grid{grid-template-columns:1fr}.visual{min-height:260px}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+section{padding:55px 0}.hero{padding:55px 0}.hero h2{font-size:35px}
+.grid,.about-grid{grid-template-columns:1fr}
+.contact{align-items:stretch;flex-direction:column}
+.toolbar{flex-direction:column}.product-img{height:200px}
+}
+</style>
+</head>
+<body class="lock">
+
+<div id="intro">
+  <div class="intro-inner">
+    <div class="logo-mark"><span>L</span></div>
+    <h1>LUMEN <span>TECH</span></h1>
+    <p>حلول تقنية تصنع المستقبل</p>
+    <div class="progress"><span></span></div>
+    <small>ALI ALOBAID</small>
+  </div>
+</div>
+
+<header>
+  <div class="container">
+    <nav>
+      <a class="brand" href="#home">
+        <div class="logo-mark"><span>L</span></div>
+        <div class="brand-name">LUMEN TECH<small>TECHNOLOGY & COMMERCE</small></div>
+      </a>
+      <div class="links" id="links">
+        <a href="#home">الرئيسية</a><a href="#services">خدماتنا</a>
+        <a href="#store">المتجر</a><a href="#about">من نحن</a><a href="#contact">تواصل معنا</a>
+      </div>
+      <div class="nav-actions">
+        <button class="cart-btn" id="open-cart">🛒 السلة <span id="count">0</span></button>
+        <a class="btn primary header-contact" id="header-wa" href="#">واتساب</a>
+        <button class="menu-btn" id="menu-btn">☰</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">LUMEN TECH · حلول تقنية وتجارية</span>
+      <h2>التقنية التي تثق بها.<br><span>والجودة التي تستحقها.</span></h2>
+      <p>وجهتك للحلول التقنية والمنتجات الإلكترونية. اكتشف منتجاتنا وتواصل معنا للحصول على التفاصيل والأسعار.</p>
+      <div class="hero-buttons">
+        <a class="btn primary" href="#store">اكتشف المتجر ←</a>
+        <a class="btn outline" href="#services">خدماتنا</a>
+      </div>
+      <div class="hero-points"><span>✦ جودة ووضوح</span><span>✦ تواصل مباشر</span><span>✦ تصميم عصري</span></div>
+    </div>
+    <div class="visual"><div class="orbit"><span>L</span></div><small>INNOVATION · QUALITY · TRUST</small></div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="heading"><span class="eyebrow">OUR SERVICES</span><h2>خدماتنا</h2><p>حلول تلبي احتياجاتك التقنية والتجارية.</p></div>
+    <div class="grid">
+      <article class="card"><div class="symbol">⌁</div><h3>الشبكات والإنترنت</h3><p>استفسر عن تجهيزات الشبكات والاتصال اللاسلكي.</p></article>
+      <article class="card"><div class="symbol">▣</div><h3>المنتجات التقنية</h3><p>تصفّح المنتجات المتاحة واطلب ما يناسبك.</p></article>
+      <article class="card"><div class="symbol">✧</div><h3>استشارات تقنية</h3><p>تواصل معنا لاختيار الحل المناسب لاحتياجاتك.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="store" id="store">
+  <div class="container">
+    <div class="heading"><span class="eyebrow">LUMEN TECH STORE</span><h2>متجر المنتجات</h2><p>اختر منتجاتك وأضفها إلى السلة.</p></div>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="ابحث عن منتج...">
+      <select id="category"><option value="all">كل التصنيفات</option></select>
+    </div>
+    <div class="grid products" id="products"><p class="muted">جارٍ تحميل المنتجات...</p></div>
+    <p id="product-status" class="muted" role="status"></p>
+    <p style="font-size:12px;margin-top:18px">الأسعار بالليرة تقريبية. يرجى تأكيد السعر والتوفر قبل إتمام الطلب.</p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container about-grid">
+    <article class="card"><span class="eyebrow">ABOUT US</span><h2>عن LUMEN TECH</h2><p>مشروع تقني وتجاري يهدف إلى تقديم تجربة عصرية في عرض المنتجات والخدمات، مع الاهتمام بالوضوح وسهولة التواصل.</p><p style="margin-top:15px">المؤسس: <strong style="color:var(--silver)">علي العبيد</strong></p></article>
+    <article class="card"><span class="eyebrow">OUR PROMISE</span><h2>ثقة ووضوح</h2><p>نوضح تفاصيل الطلب قبل تأكيده. إرسال الطلب عبر واتساب لا يعني تأكيد توفر المنتج أو إتمام الدفع.</p><p style="margin-top:15px">المتجر متصل بقاعدة بيانات Firebase لقراءة المنتجات.</p></article>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container contact">
+    <div><span class="eyebrow">CONTACT LUMEN TECH</span><h2>نحن جاهزون لمساعدتك</h2><p>إدارة الموقع: علي العبيد</p><p>واتساب: 0937966022</p></div>
+    <a class="btn green" id="contact-wa" href="#">تواصل عبر واتساب ↗</a>
+  </div>
+</section>
+</main>
+
+<footer><div class="container footer-row"><span>© <span id="year"></span> LUMEN TECH — جميع الحقوق محفوظة</span><span>تصميم وإدارة <strong style="color:var(--silver)">علي العبيد</strong></span></div></footer>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head"><h2>سلة المشتريات</h2><button class="close" id="close-cart">إغلاق ✕</button></div>
+  <div id="cart-items"></div>
+  <div class="total"><p>المجموع بالدولار</p><strong id="total-usd">$0.00</strong><p id="total-syp"></p><button class="btn primary" id="checkout">متابعة الطلب</button></div>
+</aside>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <div class="drawer-head"><h2>معلومات الطلب</h2><button class="close" id="close-modal">إغلاق ✕</button></div>
+    <form id="order-form">
+      <div class="field"><label for="customer">الاسم الكامل</label><input id="customer" name="customer" required maxlength="100"></div>
+      <div class="field"><label for="phone">رقم الهاتف</label><input id="phone" name="phone" required maxlength="25"></div>
+      <div class="field"><label for="address">العنوان أو المنطقة</label><input id="address" name="address" required maxlength="200"></div>
+      <div class="field"><label for="notes">ملاحظات اختيارية</label><textarea id="notes" name="notes" maxlength="500"></textarea></div>
+      <p id="summary" class="muted"></p>
+      <button class="btn green" type="submit" style="width:100%;margin-top:15px">إرسال الطلب عبر واتساب</button>
+    </form>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
+
+"use strict";
+
+const WHATSAPP = "963937966022";
+const USD_TO_SYP = 15000;
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCXYARZI8TrqsVTtqTRJmUiXt8b8_bM4g",
+  authDomain: "lumen-tech-store.firebaseapp.com",
+  projectId: "lumen-tech-store",
+  storageBucket: "lumen-tech-store.firebasestorage.app",
+  messagingSenderId: "453909161899",
+  appId: "1:453909161899:web:cf279599108d799f8414ee",
+  measurementId: "G-5B5NYZXJZE"
+};
+
+const $ = s => document.querySelector(s);
+const usd = n => "$" + Number(n).toFixed(2);
+const syp = n => Math.round(n).toLocaleString("en-US") + " ل.س";
+const wa = msg => "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg);
+
+let PRODUCTS = [];
+let cart = [];
+let selectedCategory = "all";
+
+try {
+  const saved = JSON.parse(localStorage.getItem("lumen_cart") || "[]");
+  if (Array.isArray(saved)) cart = saved.filter(x =>
+    x && typeof x.id === "string" && Number.isInteger(x.qty) &&
+    x.qty > 0 && x.qty <= 99
+  );
+} catch { cart = []; }
+
+function saveCart() {
+  try { localStorage.setItem("lumen_cart", JSON.stringify(cart)); } catch {}
+}
+
+function renderCategories() {
+  const select = $("#category");
+  const oldValue = selectedCategory;
+  select.replaceChildren();
+  const all = document.createElement("option");
+  all.value = "all";
+  all.textContent = "كل التصنيفات";
+  select.appendChild(all);
+
+  [...new Set(PRODUCTS.map(p => p.category))].forEach(cat => {
+    const opt = document.createElement("option");
+    opt.value = cat;
+    opt.textContent = cat;
+    select.appendChild(opt);
+  });
+
+  selectedCategory = [...select.options].some(o => o.value === oldValue) ? oldValue : "all";
+  select.value = selectedCategory;
+}
+
+function renderProducts() {
+  const grid = $("#products");
+  const q = $("#search").value.trim().toLocaleLowerCase("ar");
+  const cat = $("#category").value;
+  grid.replaceChildren();
+
+  const list = PRODUCTS.filter(p =>
+    (cat === "all" || p.category === cat) &&
+    [p.name, p.category, p.description].join(" ").toLocaleLowerCase("ar").includes(q)
+  );
+
+  if (!list.length) {
+    const e = document.createElement("p");
+    e.className = "muted";
+    e.textContent = PRODUCTS.length ? "لا توجد منتجات مطابقة." : "لا توجد منتجات منشورة حالياً في قاعدة البيانات.";
+    grid.appendChild(e);
+    return;
+  }
+
+  list.forEach(p => {
+    const card = document.createElement("article");
+    card.className = "card";
+    const pic = document.createElement("div");
+    pic.className = "product-img";
+
+    if (p.image && /^https?:\/\//i.test(p.image)) {
+      const img = document.createElement("img");
+      img.src = p.image;
+      img.alt = p.name;
+      img.loading = "lazy";
+      img.onerror = () => { img.remove(); pic.textContent = p.icon; };
+      pic.appendChild(img);
+    } else {
+      pic.textContent = p.icon;
+    }
+
+    const info = document.createElement("div");
+    info.className = "product-info";
+
+    const category = document.createElement("span");
+    category.className = "category";
+    category.textContent = p.category;
+
+    const title = document.createElement("h3");
+    title.textContent = p.name;
+
+    const desc = document.createElement("p");
+    desc.className = "description";
+    desc.textContent = p.description;
+
+    const price = document.createElement("div");
+    price.className = "price";
+    price.textContent = usd(p.price);
+
+    const local = document.createElement("div");
+    local.className = "syp";
+    local.textContent = syp(p.price * USD_TO_SYP);
+
+    const btn = document.createElement("button");
+    btn.className = "btn primary";
+    btn.textContent = "أضف إلى السلة +";
+    btn.type = "button";
+    btn.onclick = () => add(p.id);
+
+    info.append(category, title, desc, price, local, btn);
+    card.append(pic, info);
+    grid.appendChild(card);
+  });
+}
+
+async function loadProducts() {
+  const grid = $("#products");
+  const status = $("#product-status");
+  grid.replaceChildren();
+  const loading = document.createElement("p");
+  loading.className = "muted";
+  loading.textContent = "جارٍ تحميل المنتجات من قاعدة البيانات...";
+  grid.appendChild(loading);
+  status.textContent = "";
+
+  try {
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const snapshot = await getDocs(collection(db, "products"));
+
+    PRODUCTS = snapshot.docs.map(doc => {
+      const d = doc.data();
+      return {
+        id: doc.id,
+        name: String(d.name ?? d.title ?? "").trim(),
+        category: String(d.category ?? "عام").trim() || "عام",
+        description: String(d.description ?? "").trim(),
+        price: Number(d.price),
+        icon: String(d.icon ?? "📦"),
+        image: typeof d.image === "string" ? d.image.trim() : ""
+      };
+    }).filter(p =>
+      p.name &&
+      Number.isFinite(p.price) &&
+      p.price >= 0
+    );
+
+    // الاحتفاظ فقط بعناصر السلة الموجودة فعلاً في Firebase
+    cart = cart.filter(item => PRODUCTS.some(p => p.id === item.id));
+    saveCart();
+
+    renderCategories();
+    renderProducts();
+    renderCart();
+
+    status.textContent = PRODUCTS.length
+      ? "تم تحميل " + PRODUCTS.length + " منتج بنجاح."
+      : "اتصلنا بقاعدة البيانات، لكن لم نجد منتجات صالحة للعرض. تأكد من وجود حقلي name وprice في كل منتج.";
+  } catch (error) {
+    console.error("Firebase products error:", error);
+    grid.replaceChildren();
+    const msg = document.createElement("p");
+    msg.className = "muted";
+    msg.textContent = "تعذّر تحميل المنتجات. رمز الخطأ: " + (error.code || error.message || "غير معروف");
+    grid.appendChild(msg);
+    status.textContent = "تأكد من تشغيل الموقع عبر Live Server ومن قواعد Firestore التي تسمح بقراءة المنتجات.";
+  }
+}
+
+function details() {
+  return cart.map(i => {
+    const p = PRODUCTS.find(x => x.id === i.id);
+    return p ? {...p, qty: i.qty} : null;
+  }).filter(Boolean);
+}
+
+function add(id) {
+  const product = PRODUCTS.find(p => p.id === id);
+  if (!product) return;
+  const item = cart.find(x => x.id === id);
+  if (item) item.qty = Math.min(99, item.qty + 1);
+  else cart.push({id, qty: 1});
+  saveCart();
+  renderCart();
+  openCart();
+}
+
+function quantity(id, d) {
+  const item = cart.find(x => x.id === id);
+  if (!item) return;
+  item.qty += d;
+  if (item.qty <= 0) cart = cart.filter(x => x.id !== id);
+  if (item.qty > 99) item.qty = 99;
+  saveCart();
+  renderCart();
+}
+
+function renderCart() {
+  const items = details();
+  const box = $("#cart-items");
+  box.replaceChildren();
+  $("#count").textContent = items.reduce((n, x) => n + x.qty, 0);
+  const total = items.reduce((n, x) => n + x.price * x.qty, 0);
+  $("#total-usd").textContent = usd(total);
+  $("#total-syp").textContent = syp(total * USD_TO_SYP);
+
+  if (!items.length) {
+    const e = document.createElement("p");
+    e.className = "muted";
+    e.textContent = "السلة فارغة حالياً.";
+    box.appendChild(e);
+    return;
+  }
+
+  items.forEach(item => {
+    const row = document.createElement("div");
+    row.className = "cart-item";
+    const left = document.createElement("div");
+    const name = document.createElement("strong");
+    const price = document.createElement("small");
+    const qty = document.createElement("div");
+    name.textContent = item.name;
+    price.textContent = usd(item.price) + " للقطعة";
+    qty.className = "qty";
+
+    const minus = document.createElement("button");
+    minus.textContent = "−";
+    minus.onclick = () => quantity(item.id, -1);
+    const count = document.createElement("span");
+    count.textContent = item.qty;
+    const plus = document.createElement("button");
+    plus.textContent = "+";
+    plus.onclick = () => quantity(item.id, 1);
+    qty.append(minus, count, plus);
+    left.append(name, price, qty);
+
+    const right = document.createElement("div");
+    const sub = document.createElement("small");
+    sub.textContent = usd(item.price * item.qty);
+    const br = document.createElement("br");
+    const remove = document.createElement("button");
+    remove.className = "remove";
+    remove.textContent = "حذف";
+    remove.onclick = () => {
+      cart = cart.filter(x => x.id !== item.id);
+      saveCart();
+      renderCart();
+    };
+    right.append(sub, br, remove);
+    row.append(left, right);
+    box.appendChild(row);
+  });
+}
+
+function openCart() {
+  $("#drawer").classList.add("open");
+  $("#overlay").classList.add("open");
+}
+function closeCart() {
+  $("#drawer").classList.remove("open");
+  $("#overlay").classList.remove("open");
+}
+function openModal() {
+  if (!details().length) {
+    alert("أضف منتجاً إلى السلة أولاً.");
+    return;
+  }
+  const total = details().reduce((n, x) => n + x.price * x.qty, 0);
+  $("#summary").textContent = "المجموع: " + usd(total) + " — " + syp(total * USD_TO_SYP);
+  closeCart();
+  $("#modal").classList.add("open");
+}
+function closeModal() {
+  $("#modal").classList.remove("open");
+}
+
+$("#order-form").addEventListener("submit", e => {
+  e.preventDefault();
+  if (!e.currentTarget.reportValidity()) return;
+
+  const f = new FormData(e.currentTarget);
+  const name = String(f.get("customer")).trim();
+  const phone = String(f.get("phone")).trim();
+  const address = String(f.get("address")).trim();
+  const notes = String(f.get("notes")).trim();
+  const items = details();
+
+  if (!name || !phone || !address || !items.length) {
+    alert("تحقق من المعلومات والسلة.");
+    return;
+  }
+
+  const total = items.reduce((n, x) => n + x.price * x.qty, 0);
+  const lines = items.map(x => "- " + x.name + " × " + x.qty + " = " + usd(x.price * x.qty));
+  const message = [
+    "طلب جديد من LUMEN TECH",
+    "الاسم: " + name,
+    "الهاتف: " + phone,
+    "العنوان: " + address,
+    "",
+    "المنتجات:",
+    ...lines,
+    "",
+    "المجموع: " + usd(total),
+    "المجموع التقريبي بالليرة: " + syp(total * USD_TO_SYP),
+    "ملاحظات: " + (notes || "لا يوجد"),
+    "يرجى تأكيد التوفر والسعر النهائي."
+  ].join("\n");
+
+  window.open(wa(message), "_blank", "noopener,noreferrer");
+  closeModal();
+});
+
+$("#open-cart").onclick = openCart;
+$("#close-cart").onclick = closeCart;
+$("#overlay").onclick = closeCart;
+$("#checkout").onclick = openModal;
+$("#close-modal").onclick = closeModal;
+$("#menu-btn").onclick = () => $("#links").classList.toggle("show");
+$("#links").querySelectorAll("a").forEach(a => a.onclick = () => $("#links").classList.remove("show"));
+$("#search").addEventListener("input", renderProducts);
+$("#category").addEventListener("change", () => {
+  selectedCategory = $("#category").value;
+  renderProducts();
+});
+
+const welcomeMessage = "مرحباً LUMEN TECH، أريد الاستفسار عن خدماتكم.";
+$("#header-wa").href = wa(welcomeMessage);
+$("#contact-wa").href = wa(welcomeMessage);
+$("#year").textContent = new Date().getFullYear();
+
+renderCart();
+loadProducts();
+
+setTimeout(() => {
+  $("#intro").classList.add("hide");
+  document.body.classList.remove("lock");
+}, 5000);
+</script>
+</body>
+</html>
